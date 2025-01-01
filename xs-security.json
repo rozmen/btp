@@ -1,6 +1,33 @@
 {
-  "scopes": [],
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.risk-viewer",
+      "description": "risk-viewer"
+    },
+    {
+      "name": "$XSAPPNAME.risk-manager",
+      "description": "risk-manager"
+    }
+  ],
   "attributes": [],
-  "role-templates": [],
-  "authorities-inheritance": false
+  "role-templates": [
+    {
+      "name": "risk-viewer",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.risk-viewer"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "risk-manager",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.risk-manager"
+      ],
+      "attribute-references": []
+    }
+  ],
+  "xsappname": "RiskManagement",
+  "tenant-mode": "dedicated"
 }

@@ -5,16 +5,22 @@ using { RiskManagement as my } from '../db/schema.cds';
 @path : '/service/RiskManagementService'
 service RiskManagementService
 {
+    annotate A_BusinessPartner with @restrict :
+    [
+        { grant : [ '*' ], to : [ 'authenticated-user' ] },
+        { grant : [ '*' ], to : [ 'risk-manager' ] }
+    ];
+
     annotate Mitigations with @restrict :
     [
-        { grant : [ 'READ' ], to : [ 'Risk Viewer' ] },
-        { grant : [ '*' ], to : [ 'Risk Manager' ] }
+        { grant : [ 'READ' ], to : [ 'risk-viewer' ] },
+        { grant : [ '*' ], to : [ 'risk-manager' ] }
     ];
 
     annotate Risks with @restrict :
     [
-        { grant : [ 'READ' ], to : [ 'Risk Viewer' ] },
-        { grant : [ '*' ], to : [ 'Risk Manager' ] }
+        { grant : [ 'READ' ], to : [ 'risk-viewer' ] },
+        { grant : [ '*' ], to : [ 'risk-manager' ] }
     ];
 
     @odata.draft.enabled
@@ -40,6 +46,7 @@ service RiskManagementService
 annotate RiskManagementService with @requires :
 [
     'authenticated-user',
-    'Risk Viewer',
-    'any'
+    'any',
+    'risk-viewer',
+    'risk-manager'
 ];
